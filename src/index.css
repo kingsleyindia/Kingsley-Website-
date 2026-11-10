@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-navy: #173B5E;
+    --color-deep-navy: #0B1E34;
+    --color-surface: #1E4872;
+    --color-ivory: #F6F4EF;
+    --color-gold: #E2B155;
+    --color-mist: #A9BBD0;
+  }
+
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F6F4EF;
+    color: #0B1E34;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  /* Custom focus outline per brand requirements: 2px Gold outline with 2px offset */
+  :focus-visible {
+    outline: 2px solid #E2B155 !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Underline grow effect for navbar links */
+.nav-link-underline {
+  position: relative;
+}
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: #E2B155;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link-underline:hover::after {
+  width: 100%;
+}
+
+
+
+/* Skyline horizontal drift */
+@keyframes slowDrift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-skyline-drift {
+  animation: slowDrift 45s ease-in-out infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-skyline-drift {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Hide scrollbar on carousels while keeping scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
